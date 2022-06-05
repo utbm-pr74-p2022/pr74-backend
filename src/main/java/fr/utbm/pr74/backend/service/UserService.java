@@ -19,4 +19,8 @@ public class UserService {
     public Optional<User> get(Integer id) {
         return repository.findById(id);
     }
+
+    public User create(User user) {
+        return repository.save(user);
+    }
 }
