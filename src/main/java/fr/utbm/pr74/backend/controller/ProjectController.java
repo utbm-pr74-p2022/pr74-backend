@@ -46,6 +46,6 @@ public class ProjectController {
     @PostMapping("/project")
     public ResponseEntity<ProjectModel> createProject(@RequestBody ProjectModel projectModel) {
         var project = projectModelBuilder.build(projectModel);
-        return new ResponseEntity<>(projectModelAssembler.toModel(projectService.create(project.getName(), project.getUsers())), HttpStatus.OK);
+        return new ResponseEntity<>(projectModelAssembler.toModel(projectService.create(project.getName(), project.getUsers())), HttpStatus.CREATED);
     }
 }

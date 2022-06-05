@@ -2,10 +2,7 @@ package fr.utbm.pr74.backend.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,7 +12,7 @@ public class Project {
     @GeneratedValue
     private Integer id;
     private String name;
-    @OneToMany
+    @ManyToMany
     private List<User> users;
     @OneToMany
     private List<Priority> priorities;

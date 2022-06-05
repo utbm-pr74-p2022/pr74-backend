@@ -18,7 +18,7 @@ public class ProjectModelBuilder extends AbstractModelBuilder<Project, ProjectMo
     @Override
     public Project build(ProjectModel model) {
         var project = new Project();
-        project.setName(project.getName());
+        project.setName(model.getName());
         project.setUsers(userModelBuilder.buildList(model.getUsers()));
         return project;
     }
