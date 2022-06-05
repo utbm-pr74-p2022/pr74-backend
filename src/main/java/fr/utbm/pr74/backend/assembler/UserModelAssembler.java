@@ -16,6 +16,7 @@ public class UserModelAssembler extends RepresentationModelAssemblerSupport<User
     @Override
     public UserModel toModel(User entity) {
         var userModel = instantiateModel(entity);
+        userModel.setId(entity.getId());
         userModel.setUsername(entity.getUsername());
         return userModel;
     }

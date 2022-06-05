@@ -11,5 +11,6 @@ import org.springframework.hateoas.server.core.Relation;
 @EqualsAndHashCode(callSuper = false)
 @Relation(collectionRelation = "users")
 public class UserModel extends RepresentationModel<UserModel> {
+    private Integer id;
     private String username;
 }
