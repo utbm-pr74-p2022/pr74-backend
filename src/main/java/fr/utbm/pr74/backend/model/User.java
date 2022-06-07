@@ -1,22 +1,19 @@
 package fr.utbm.pr74.backend.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Data
-public class User implements UserDetails {
-    @Id
-    @GeneratedValue
-    private Integer id;
+@Getter
+@Setter
+public class User extends AbstractEntity implements UserDetails {
     private String username;
     private String password;
     private boolean enabled;
