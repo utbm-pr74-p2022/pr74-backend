@@ -6,7 +6,6 @@ import fr.utbm.pr74.backend.resource.RegistrationUserModel;
 import fr.utbm.pr74.backend.resource.UserModel;
 import fr.utbm.pr74.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +28,18 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<UserModel> createUser(@RequestBody RegistrationUserModel registrationUserModel) {
         var user = registrationUserModelBuilder.build(registrationUserModel);
-        return new ResponseEntity<>(userModelAssembler.toModel(userService.create(user)), HttpStatus.CREATED);
+        return userService.register(user)
+                .map(userModelAssembler::toModel)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.badRequest().build());
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserModel> login(@RequestBody RegistrationUserModel registrationUserModel) {
+        var user = registrationUserModelBuilder.build(registrationUserModel);
+        return userService.login(user)
+                .map(userModelAssembler::toModel)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.badRequest().build());
     }
 }
