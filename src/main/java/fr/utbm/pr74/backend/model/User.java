@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,9 +20,14 @@ public class User extends AbstractEntity implements UserDetails {
     private boolean enabled;
     @ManyToOne
     private Role role;
+    @Transient
+    private String token;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (role == null) {
+            return List.of();
+        }
         return List.of(role);
     }
 
