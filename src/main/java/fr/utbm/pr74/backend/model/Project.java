@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity
@@ -21,4 +22,6 @@ public class Project extends AbstractEntity {
     private List<Status> statuses;
     @OneToMany
     private List<Tag> tags;
+    @OneToOne
+    private Backlog backlog;
 }

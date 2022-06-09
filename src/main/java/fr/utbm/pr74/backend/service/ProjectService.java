@@ -1,5 +1,6 @@
 package fr.utbm.pr74.backend.service;
 
+import fr.utbm.pr74.backend.model.Backlog;
 import fr.utbm.pr74.backend.model.Priority;
 import fr.utbm.pr74.backend.model.Project;
 import fr.utbm.pr74.backend.model.Status;
@@ -13,12 +14,14 @@ import java.util.List;
 public class ProjectService extends AbstractService<Project, ProjectRepository> {
     private final PriorityService priorityService;
     private final StatusService statusService;
+    private final BacklogService backlogService;
 
     @Autowired
-    public ProjectService(ProjectRepository repository, PriorityService priorityService, StatusService statusService) {
+    public ProjectService(ProjectRepository repository, PriorityService priorityService, StatusService statusService, BacklogService backlogService) {
         super(repository);
         this.priorityService = priorityService;
         this.statusService = statusService;
+        this.backlogService = backlogService;
     }
 
     @Override
@@ -35,6 +38,8 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
         if (entity.getStatuses() == null) {
             entity.setStatuses(List.of(todo, inProgress, done));
         }
+        var backlog = backlogService.create(new Backlog());
+        entity.setBacklog(backlog);
         return super.create(entity);
     }
 }
