@@ -17,4 +17,8 @@ public class Project extends AbstractEntity {
     private List<User> users;
     @OneToMany
     private List<Priority> priorities;
+    @OneToMany
+    private List<Status> statuses;
+    @OneToMany
+    private List<Tag> tags;
 }

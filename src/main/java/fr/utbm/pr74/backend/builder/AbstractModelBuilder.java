@@ -9,8 +9,8 @@ public abstract class AbstractModelBuilder<T, U> implements ModelBuilder<T, U> {
     @Override
     public List<T> buildList(CollectionModel<U> models) {
         List<T> entities = new ArrayList<>();
-        for (U model : models) {
-            entities.add(build(model));
+        if (models != null) {
+            models.getContent().forEach(model -> entities.add(build(model)));
         }
         return entities;
     }
