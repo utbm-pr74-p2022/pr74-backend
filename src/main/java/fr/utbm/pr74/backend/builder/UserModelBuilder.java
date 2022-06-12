@@ -9,6 +9,9 @@ public class UserModelBuilder extends AbstractModelBuilder<User, UserModel> {
     @Override
     public User build(UserModel model) {
         var user = new User();
+        if (model == null) {
+            return user;
+        }
         user.setId(model.getId());
         user.setUsername(model.getUsername());
         return user;
