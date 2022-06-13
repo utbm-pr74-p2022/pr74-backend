@@ -22,6 +22,6 @@ public class Project extends AbstractEntity {
     private List<Status> statuses;
     @OneToMany
     private List<Tag> tags;
-    @OneToOne
+    @OneToOne(mappedBy = "project")
     private Backlog backlog;
 }

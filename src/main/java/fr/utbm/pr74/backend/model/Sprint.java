@@ -17,6 +17,6 @@ public class Sprint extends AbstractEntity {
     private Date endDate;
     @ManyToOne
     private Project project;
-    @ManyToMany
+    @ManyToMany(mappedBy = "sprints")
     private List<Task> tasks;
 }

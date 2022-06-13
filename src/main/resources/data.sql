@@ -14,9 +14,9 @@ INSERT INTO priority(id, name) VALUES(10, "Low");
 INSERT INTO priority(id, name) VALUES(11, "Normal");
 INSERT INTO priority(id, name) VALUES(12, "High");
 
-INSERT INTO backlog(id) VALUES(13);
+INSERT INTO project(id, name) VALUES(14, "Project 1");
 
-INSERT INTO project(id, name, backlog_id) VALUES(14, "Project 1", 13);
+INSERT INTO backlog(id, project_id) VALUES(13, 14);
 
 INSERT INTO project_statuses(project_id, statuses_id) VALUES(14, 7);
 INSERT INTO project_statuses(project_id, statuses_id) VALUES(14, 8);
@@ -29,3 +29,14 @@ INSERT INTO project_priorities(project_id, priorities_id) VALUES(14, 12);
 INSERT INTO project_users(project_id, users_id) VALUES(14, 4);
 INSERT INTO project_users(project_id, users_id) VALUES(14, 5);
 INSERT INTO project_users(project_id, users_id) VALUES(14, 6);
+
+INSERT INTO sprint(id, name, description, project_id, start_date, end_date) VALUES(15, "Sprint 1", "Sprint 1 description", 14, '2022-06-06', '2022-06-20');
+
+INSERT INTO task(id, name, description, backlog_id, priority_id) VALUES(16, "Task 1", "Task 1 description", 13, 11);
+INSERT INTO task(id, name, description, priority_id, status_id, user_id) VALUES(17, "Task 2", "Task 2 description", 11, 7, 6);
+
+INSERT INTO task_sprints(tasks_id, sprints_id) VALUES(17, 15);
+
+-- /!\ Important: don't forget to update hibernate_sequence /!\
+DELETE FROM hibernate_sequence;
+INSERT INTO hibernate_sequence(next_val) VALUES(18);
