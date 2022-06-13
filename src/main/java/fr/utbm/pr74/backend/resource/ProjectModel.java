@@ -17,4 +17,5 @@ public class ProjectModel extends RepresentationModel<LightProjectModel> {
     private CollectionModel<UserModel> users;
     private CollectionModel<PriorityModel> priorities;
     private CollectionModel<StatusModel> statuses;
+    private CollectionModel<LightSprintModel> sprints;
 }

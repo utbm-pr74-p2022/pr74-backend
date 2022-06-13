@@ -3,10 +3,7 @@ package fr.utbm.pr74.backend.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -24,4 +21,6 @@ public class Project extends AbstractEntity {
     private List<Tag> tags;
     @OneToOne(mappedBy = "project")
     private Backlog backlog;
+    @OneToMany(mappedBy = "project")
+    private List<Sprint> sprints;
 }

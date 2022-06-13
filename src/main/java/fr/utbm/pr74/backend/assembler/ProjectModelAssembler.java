@@ -15,13 +15,15 @@ public class ProjectModelAssembler extends RepresentationModelAssemblerSupport<P
     private final UserModelAssembler userModelAssembler;
     private final PriorityModelAssembler priorityModelAssembler;
     private final StatusModelAssembler statusModelAssembler;
+    private final LightSprintModelAssembler lightSprintModelAssembler;
 
     @Autowired
-    public ProjectModelAssembler(UserModelAssembler userModelAssembler, PriorityModelAssembler priorityModelAssembler, StatusModelAssembler statusModelAssembler) {
+    public ProjectModelAssembler(UserModelAssembler userModelAssembler, PriorityModelAssembler priorityModelAssembler, StatusModelAssembler statusModelAssembler, LightSprintModelAssembler lightSprintModelAssembler) {
         super(ProjectController.class, ProjectModel.class);
         this.userModelAssembler = userModelAssembler;
         this.priorityModelAssembler = priorityModelAssembler;
         this.statusModelAssembler = statusModelAssembler;
+        this.lightSprintModelAssembler = lightSprintModelAssembler;
     }
 
     @Override
@@ -35,6 +37,7 @@ public class ProjectModelAssembler extends RepresentationModelAssemblerSupport<P
         projectModel.setUsers(userModelAssembler.toCollectionModel(entity.getUsers()));
         projectModel.setPriorities(priorityModelAssembler.toCollectionModel(entity.getPriorities()));
         projectModel.setStatuses(statusModelAssembler.toCollectionModel(entity.getStatuses()));
+        projectModel.setSprints(lightSprintModelAssembler.toCollectionModel(entity.getSprints()));
         return projectModel;
     }
 
