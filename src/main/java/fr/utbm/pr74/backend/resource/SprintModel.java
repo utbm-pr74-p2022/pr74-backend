@@ -1,11 +1,10 @@
 package fr.utbm.pr74.backend.resource;
 
 import lombok.*;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import java.util.Date;
-import java.util.List;
 
 @Data
 @Builder
@@ -17,8 +16,8 @@ public class SprintModel extends RepresentationModel<SprintModel> {
     private Integer id;
     private String name;
     private String description;
-    private Date startDate;
-    private Date endDate;
-    private Integer projectId;
-    private List<TaskModel> tasks;
+    private String startDate;
+    private String endDate;
+    private LightProjectModel project;
+    private CollectionModel<TaskModel> tasks;
 }
