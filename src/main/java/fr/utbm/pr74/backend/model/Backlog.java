@@ -14,6 +14,6 @@ import java.util.List;
 public class Backlog extends AbstractEntity {
     @OneToOne
     private Project project;
-    @OneToMany
+    @OneToMany(mappedBy = "backlog")
     private List<Task> tasks;
 }

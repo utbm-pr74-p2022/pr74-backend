@@ -12,12 +12,14 @@ public class TaskModelBuilder extends AbstractModelBuilder<Task, TaskModel> {
     private final StatusService statusService;
     private final LightSprintModelBuilder lightSprintModelBuilder;
     private final UserModelBuilder userModelBuilder;
+    private final LightBacklogModelBuilder lightBacklogModelBuilder;
 
-    public TaskModelBuilder(PriorityService priorityService, StatusService statusService, LightSprintModelBuilder lightSprintModelBuilder, UserModelBuilder userModelBuilder) {
+    public TaskModelBuilder(PriorityService priorityService, StatusService statusService, LightSprintModelBuilder lightSprintModelBuilder, UserModelBuilder userModelBuilder, LightBacklogModelBuilder lightBacklogModelBuilder) {
         this.priorityService = priorityService;
         this.statusService = statusService;
         this.lightSprintModelBuilder = lightSprintModelBuilder;
         this.userModelBuilder = userModelBuilder;
+        this.lightBacklogModelBuilder = lightBacklogModelBuilder;
     }
 
     @Override
@@ -33,6 +35,9 @@ public class TaskModelBuilder extends AbstractModelBuilder<Task, TaskModel> {
             task.setStatus(statusService.getById(model.getStatus().getId()).orElseThrow());
         }
         task.setSprints(lightSprintModelBuilder.buildList(model.getSprints()));
+        if (model.getBacklog() != null && model.getBacklog().getId() != null) {
+            task.setBacklog(lightBacklogModelBuilder.build(model.getBacklog()));
+        }
         if (model.getUser() != null) {
             task.setUser(userModelBuilder.build(model.getUser()));
         }
