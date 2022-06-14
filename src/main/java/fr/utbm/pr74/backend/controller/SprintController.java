@@ -41,4 +41,10 @@ public class SprintController {
         var sprint = sprintModelBuilder.build(sprintModel);
         return new ResponseEntity<>(sprintModelAssembler.toModel(sprintService.create(sprint)), HttpStatus.CREATED);
     }
+
+    @PutMapping("/sprint/{id}")
+    public ResponseEntity<SprintModel> updateSprint(@PathVariable Integer id, @RequestBody SprintModel sprintModel) {
+        var sprint = sprintModelBuilder.build(sprintModel);
+        return new ResponseEntity<>(sprintModelAssembler.toModel(sprintService.update(id, sprint)), HttpStatus.OK);
+    }
 }

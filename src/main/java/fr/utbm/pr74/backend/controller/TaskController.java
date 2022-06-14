@@ -42,4 +42,10 @@ public class TaskController {
         return new ResponseEntity<>(taskModelAssembler.toModel(taskService.create(task)), HttpStatus.CREATED);
     }
 
+    @PutMapping("/task/{id}")
+    public ResponseEntity<TaskModel> updateTask(@PathVariable Integer id, @RequestBody TaskModel taskModel) {
+        var task = taskModelBuilder.build(taskModel);
+        return new ResponseEntity<>(taskModelAssembler.toModel(taskService.update(id, task)), HttpStatus.OK);
+    }
+
 }

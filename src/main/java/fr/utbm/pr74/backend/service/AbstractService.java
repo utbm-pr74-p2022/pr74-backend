@@ -25,4 +25,9 @@ public abstract class AbstractService<T extends AbstractEntity, U extends JpaRep
     public List<T> getAll() {
         return repository.findAll();
     }
+
+    public T update(Integer id, T entity) {
+        entity.setId(id);
+        return repository.save(entity);
+    }
 }
