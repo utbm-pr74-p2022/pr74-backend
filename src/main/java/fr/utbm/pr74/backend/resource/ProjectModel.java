@@ -19,4 +19,6 @@ public class ProjectModel extends RepresentationModel<LightProjectModel> {
     private CollectionModel<StatusModel> statuses;
     private BacklogModel backlog;
     private CollectionModel<LightSprintModel> sprints;
+    private String date;
+    private String status;
 }

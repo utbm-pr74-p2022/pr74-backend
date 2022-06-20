@@ -27,8 +27,12 @@ public class BacklogModelAssembler extends RepresentationModelAssemblerSupport<B
         backlogModel.add(linkTo(methodOn(BacklogController.class).getBacklogById(entity.getId())).withSelfRel());
 
         backlogModel.setId(entity.getId());
-        backlogModel.setProject(lightProjectModelAssembler.toModel(entity.getProject()));
-        backlogModel.setTasks(taskModelAssembler.toCollectionModel(entity.getTasks()));
+        if (entity.getProject() != null) {
+            backlogModel.setProject(lightProjectModelAssembler.toModel(entity.getProject()));
+        }
+        if (entity.getTasks() != null) {
+            backlogModel.setTasks(taskModelAssembler.toCollectionModel(entity.getTasks()));
+        }
         return backlogModel;
     }
 }

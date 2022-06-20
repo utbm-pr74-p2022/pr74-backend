@@ -8,6 +8,7 @@ import fr.utbm.pr74.backend.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,6 +41,8 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
         }
         var backlog = backlogService.create(new Backlog());
         entity.setBacklog(backlog);
+        entity.setDate(new Date());
+        entity.setStatus("OPEN");
         return super.create(entity);
     }
 }

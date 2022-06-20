@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -30,6 +32,7 @@ public class ProjectModelAssembler extends RepresentationModelAssemblerSupport<P
 
     @Override
     public ProjectModel toModel(Project entity) {
+        final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         var projectModel = instantiateModel(entity);
 
         projectModel.add(linkTo(methodOn(ProjectController.class).getProjectById(entity.getId())).withSelfRel());
@@ -40,7 +43,11 @@ public class ProjectModelAssembler extends RepresentationModelAssemblerSupport<P
         projectModel.setPriorities(priorityModelAssembler.toCollectionModel(entity.getPriorities()));
         projectModel.setStatuses(statusModelAssembler.toCollectionModel(entity.getStatuses()));
         projectModel.setBacklog(backlogModelAssembler.toModel(entity.getBacklog()));
-        projectModel.setSprints(lightSprintModelAssembler.toCollectionModel(entity.getSprints()));
+        if (entity.getSprints() != null) {
+            projectModel.setSprints(lightSprintModelAssembler.toCollectionModel(entity.getSprints()));
+        }
+        projectModel.setDate(formatter.format(entity.getDate()));
+        projectModel.setStatus(entity.getStatus());
         return projectModel;
     }
 

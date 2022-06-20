@@ -13,4 +13,6 @@ import org.springframework.hateoas.server.core.Relation;
 public class LightProjectModel extends RepresentationModel<LightProjectModel> {
     private Integer id;
     private String name;
+    private String date;
+    private String status;
 }

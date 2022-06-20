@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,4 +24,6 @@ public class Project extends AbstractEntity {
     private Backlog backlog;
     @OneToMany(mappedBy = "project")
     private List<Sprint> sprints;
+    private Date date;
+    private String status;
 }

@@ -5,6 +5,8 @@ import fr.utbm.pr74.backend.resource.ProjectModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+
 @Component
 public class ProjectModelBuilder extends AbstractModelBuilder<Project, ProjectModel> {
     private final UserModelBuilder userModelBuilder;
@@ -20,6 +22,7 @@ public class ProjectModelBuilder extends AbstractModelBuilder<Project, ProjectMo
         var project = new Project();
         project.setName(model.getName());
         project.setUsers(userModelBuilder.buildList(model.getUsers()));
+        project.setStatus(model.getStatus());
         return project;
     }
 }
