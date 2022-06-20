@@ -19,6 +19,7 @@ public class LoginUserModelAssembler extends RepresentationModelAssemblerSupport
         userModel.setId(entity.getId());
         userModel.setUsername(entity.getUsername());
         userModel.setToken(entity.getToken());
+        userModel.setRole(entity.getRole().getAuthority());
         return userModel;
     }
 }
