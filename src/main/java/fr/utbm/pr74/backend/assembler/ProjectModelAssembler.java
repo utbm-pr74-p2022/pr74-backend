@@ -39,14 +39,24 @@ public class ProjectModelAssembler extends RepresentationModelAssemblerSupport<P
 
         projectModel.setId(entity.getId());
         projectModel.setName(entity.getName());
-        projectModel.setUsers(userModelAssembler.toCollectionModel(entity.getUsers()));
-        projectModel.setPriorities(priorityModelAssembler.toCollectionModel(entity.getPriorities()));
-        projectModel.setStatuses(statusModelAssembler.toCollectionModel(entity.getStatuses()));
-        projectModel.setBacklog(backlogModelAssembler.toModel(entity.getBacklog()));
+        if (entity.getUsers() != null) {
+            projectModel.setUsers(userModelAssembler.toCollectionModel(entity.getUsers()));
+        }
+        if (entity.getPriorities() != null) {
+            projectModel.setPriorities(priorityModelAssembler.toCollectionModel(entity.getPriorities()));
+        }
+        if (entity.getStatuses() != null) {
+            projectModel.setStatuses(statusModelAssembler.toCollectionModel(entity.getStatuses()));
+        }
+        if (entity.getBacklog() != null) {
+            projectModel.setBacklog(backlogModelAssembler.toModel(entity.getBacklog()));
+        }
         if (entity.getSprints() != null) {
             projectModel.setSprints(lightSprintModelAssembler.toCollectionModel(entity.getSprints()));
         }
-        projectModel.setDate(formatter.format(entity.getDate()));
+        if (entity.getDate() != null) {
+            projectModel.setDate(formatter.format(entity.getDate()));
+        }
         projectModel.setStatus(entity.getStatus());
         return projectModel;
     }

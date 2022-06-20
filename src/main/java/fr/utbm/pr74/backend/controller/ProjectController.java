@@ -48,4 +48,10 @@ public class ProjectController {
         var project = projectModelBuilder.build(projectModel);
         return new ResponseEntity<>(projectModelAssembler.toModel(projectService.create(project)), HttpStatus.CREATED);
     }
+
+    @PutMapping("/project/{id}")
+    public ResponseEntity<ProjectModel> updateProject(@PathVariable("id") Integer id, @RequestBody ProjectModel projectModel) {
+        var project = projectModelBuilder.build(projectModel);
+        return new ResponseEntity<>(projectModelAssembler.toModel(projectService.update(id, project)), HttpStatus.OK);
+    }
 }
