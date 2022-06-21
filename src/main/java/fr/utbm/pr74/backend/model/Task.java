@@ -18,8 +18,8 @@ public class Task extends AbstractEntity {
     private Status status;
     @ManyToMany
     private List<Tag> tags;
-    @ManyToMany
-    private List<Sprint> sprints;
+    @ManyToOne
+    private Sprint sprint;
     @OneToOne
     private Backlog backlog;
     @ManyToOne

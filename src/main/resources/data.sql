@@ -33,9 +33,7 @@ INSERT INTO project_users(project_id, users_id) VALUES(14, 6);
 INSERT INTO sprint(id, name, description, project_id, start_date, end_date) VALUES(15, "Sprint 1", "Sprint 1 description", 14, '2022-06-06', '2022-06-20');
 
 INSERT INTO task(id, name, description, backlog_id, priority_id) VALUES(16, "Task 1", "Task 1 description", 13, 11);
-INSERT INTO task(id, name, description, priority_id, status_id, user_id) VALUES(17, "Task 2", "Task 2 description", 11, 7, 6);
-
-INSERT INTO task_sprints(tasks_id, sprints_id) VALUES(17, 15);
+INSERT INTO task(id, name, description, priority_id, status_id, user_id, sprint_id) VALUES(17, "Task 2", "Task 2 description", 11, 7, 6, 15);
 
 -- /!\ Important: don't forget to update hibernate_sequence /!\
 DELETE FROM hibernate_sequence;

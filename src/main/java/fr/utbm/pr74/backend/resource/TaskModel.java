@@ -18,7 +18,7 @@ public class TaskModel extends RepresentationModel<TaskModel> {
     private String description;
     private PriorityModel priority;
     private StatusModel status;
-    private CollectionModel<LightSprintModel> sprints;
+    private LightSprintModel sprint;
     private LightBacklogModel backlog;
     private UserModel user;
 }

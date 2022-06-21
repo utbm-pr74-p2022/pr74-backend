@@ -34,7 +34,9 @@ public class TaskModelBuilder extends AbstractModelBuilder<Task, TaskModel> {
         if (model.getStatus() != null && model.getStatus().getId() != null) {
             task.setStatus(statusService.getById(model.getStatus().getId()).orElseThrow());
         }
-        task.setSprints(lightSprintModelBuilder.buildList(model.getSprints()));
+        if (model.getSprint() != null && model.getSprint().getId() != null) {
+            task.setSprint(lightSprintModelBuilder.build(model.getSprint()));
+        }
         if (model.getBacklog() != null && model.getBacklog().getId() != null) {
             task.setBacklog(lightBacklogModelBuilder.build(model.getBacklog()));
         }

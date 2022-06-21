@@ -43,8 +43,8 @@ public class TaskModelAssembler extends RepresentationModelAssemblerSupport<Task
         if (entity.getStatus() != null) {
             taskModel.setStatus(statusModelAssembler.toModel(entity.getStatus()));
         }
-        if (entity.getSprints() != null) {
-            taskModel.setSprints(lightSprintModelAssembler.toCollectionModel(entity.getSprints()));
+        if (entity.getSprint() != null) {
+            taskModel.setSprint(lightSprintModelAssembler.toModel(entity.getSprint()));
         }
         if (entity.getBacklog() != null) {
             taskModel.setBacklog(lightBacklogModelAssembler.toModel(entity.getBacklog()));
