@@ -30,4 +30,8 @@ public abstract class AbstractService<T extends AbstractEntity, U extends JpaRep
         entity.setId(id);
         return repository.save(entity);
     }
+
+    public void delete(Integer id) {
+        repository.deleteById(id);
+    }
 }

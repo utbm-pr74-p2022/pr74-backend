@@ -6,7 +6,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SprintService extends AbstractService<Sprint, SprintRepository> {
-    protected SprintService(SprintRepository repository) {
+    private final TaskService taskService;
+    protected SprintService(SprintRepository repository, TaskService taskService) {
         super(repository);
+        this.taskService = taskService;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        var sprint = getById(id).orElseThrow();
+        for (var task : sprint.getTasks()) {
+            taskService.delete(task.getId());
+        }
+        super.delete(id);
     }
 }

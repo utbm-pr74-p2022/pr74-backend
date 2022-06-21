@@ -7,7 +7,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BacklogService extends AbstractService<Backlog, BacklogRepository> {
-    protected BacklogService(BacklogRepository repository) {
+    private final TaskService taskService;
+
+    protected BacklogService(BacklogRepository repository, TaskService taskService) {
         super(repository);
+        this.taskService = taskService;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        var backlog = getById(id).orElseThrow();
+        for (var task : backlog.getTasks()) {
+            taskService.delete(task.getId());
+        }
+        super.delete(id);
     }
 }

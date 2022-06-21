@@ -16,13 +16,15 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
     private final PriorityService priorityService;
     private final StatusService statusService;
     private final BacklogService backlogService;
+    private final SprintService sprintService;
 
     @Autowired
-    public ProjectService(ProjectRepository repository, PriorityService priorityService, StatusService statusService, BacklogService backlogService) {
+    public ProjectService(ProjectRepository repository, PriorityService priorityService, StatusService statusService, BacklogService backlogService, SprintService sprintService) {
         super(repository);
         this.priorityService = priorityService;
         this.statusService = statusService;
         this.backlogService = backlogService;
+        this.sprintService = sprintService;
     }
 
     @Override
@@ -51,5 +53,17 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
         var project = getById(id).orElseThrow();
         project.setName(entity.getName());
         return super.update(id, project);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        var project = getById(id).orElseThrow();
+        if (project.getBacklog() != null) {
+            backlogService.delete(project.getBacklog().getId());
+        }
+        for (var sprint : project.getSprints()) {
+            sprintService.delete(sprint.getId());
+        }
+        super.delete(id);
     }
 }

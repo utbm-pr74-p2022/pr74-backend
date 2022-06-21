@@ -54,4 +54,10 @@ public class ProjectController {
         var project = projectModelBuilder.build(projectModel);
         return new ResponseEntity<>(projectModelAssembler.toModel(projectService.update(id, project)), HttpStatus.OK);
     }
+
+    @DeleteMapping("/project/{id}")
+    public ResponseEntity<Void> deleteProject(@PathVariable("id") Integer id) {
+        projectService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
