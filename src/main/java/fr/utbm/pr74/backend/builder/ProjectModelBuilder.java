@@ -34,9 +34,13 @@ public class ProjectModelBuilder extends AbstractModelBuilder<Project, ProjectMo
         project.setUsers(userModelBuilder.buildList(model.getUsers()));
         project.setPriorities(priorityModelBuilder.buildList(model.getPriorities()));
         project.setStatuses(statusModelBuilder.buildList(model.getStatuses()));
-        project.setBacklog(backlogService.getById(model.getBacklog().getId()).orElseThrow());
+        if (model.getBacklog() != null && model.getBacklog().getId() != null) {
+            project.setBacklog(backlogService.getById(model.getBacklog().getId()).orElseThrow());
+        }
         project.setStatus(model.getStatus());
-        project.setDate(formatter.parse(model.getDate()));
+        if (model.getDate() != null) {
+            project.setDate(formatter.parse(model.getDate()));
+        }
         return project;
     }
 }

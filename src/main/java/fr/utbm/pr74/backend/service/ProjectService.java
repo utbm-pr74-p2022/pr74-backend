@@ -45,4 +45,11 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
         entity.setStatus("OPEN");
         return super.create(entity);
     }
+
+    @Override
+    public Project update(Integer id, Project entity) {
+        var project = getById(id).orElseThrow();
+        project.setName(entity.getName());
+        return super.update(id, project);
+    }
 }
