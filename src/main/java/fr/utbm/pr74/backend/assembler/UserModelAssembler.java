@@ -18,6 +18,7 @@ public class UserModelAssembler extends RepresentationModelAssemblerSupport<User
         var userModel = instantiateModel(entity);
         userModel.setId(entity.getId());
         userModel.setUsername(entity.getUsername());
+        userModel.setImage(entity.getImage());
         return userModel;
     }
 }

@@ -15,4 +15,5 @@ public class LoginUserModel extends RepresentationModel<UserModel> {
     private String username;
     private String token;
     private String role;
+    private String image;
 }

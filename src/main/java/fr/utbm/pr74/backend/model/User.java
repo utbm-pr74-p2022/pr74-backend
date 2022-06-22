@@ -22,6 +22,7 @@ public class User extends AbstractEntity implements UserDetails {
     private Role role;
     @Transient
     private String token;
+    private String image;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

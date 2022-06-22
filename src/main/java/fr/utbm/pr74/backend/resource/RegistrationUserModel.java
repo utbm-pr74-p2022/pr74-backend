@@ -13,4 +13,5 @@ import org.springframework.hateoas.server.core.Relation;
 public class RegistrationUserModel extends RepresentationModel<RegistrationUserModel> {
     private String username;
     private String password;
+    private String image;
 }
