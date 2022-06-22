@@ -59,8 +59,14 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
     @Override
     public void delete(Integer id) {
         var project = getById(id).orElseThrow();
+        Integer backlogId = null;
         if (project.getBacklog() != null) {
-            backlogService.delete(project.getBacklog().getId());
+            backlogId = project.getBacklog().getId();
+        }
+        project.setBacklog(null);
+        update(id, project);
+        if (backlogId != null) {
+            backlogService.delete(backlogId);
         }
         for (var sprint : project.getSprints()) {
             sprintService.delete(sprint.getId());
