@@ -52,6 +52,7 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
     public Project update(Integer id, Project entity) {
         var project = getById(id).orElseThrow();
         project.setName(entity.getName());
+        project.setUsers(entity.getUsers());
         return super.update(id, project);
     }
 
