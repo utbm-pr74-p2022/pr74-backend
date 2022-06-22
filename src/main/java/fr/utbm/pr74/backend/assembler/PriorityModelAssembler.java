@@ -23,6 +23,7 @@ public class PriorityModelAssembler extends RepresentationModelAssemblerSupport<
 
         priorityModel.setId(entity.getId());
         priorityModel.setName(entity.getName());
+        priorityModel.setColor(entity.getColor());
         return priorityModel;
     }
 }

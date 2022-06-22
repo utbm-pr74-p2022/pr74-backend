@@ -14,4 +14,5 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 public class Priority extends AbstractEntity {
     private String name;
+    private String color;
 }

@@ -11,6 +11,7 @@ public class PriorityModelBuilder extends AbstractModelBuilder<Priority, Priorit
         var priority = new Priority();
         priority.setId(model.getId());
         priority.setName(model.getName());
+        priority.setColor(model.getColor());
         return priority;
     }
 }

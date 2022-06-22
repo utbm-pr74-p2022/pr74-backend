@@ -13,4 +13,5 @@ import org.springframework.hateoas.server.core.Relation;
 public class PriorityModel extends RepresentationModel<PriorityModel> {
     private Integer id;
     private String name;
+    private String color;
 }

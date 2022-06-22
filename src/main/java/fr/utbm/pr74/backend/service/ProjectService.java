@@ -29,9 +29,9 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
 
     @Override
     public Project create(Project entity) {
-        var low = priorityService.create(new Priority("Low"));
-        var normal = priorityService.create(new Priority("Normal"));
-        var high = priorityService.create(new Priority("High"));
+        var low = priorityService.create(new Priority("Low", "yellow-500"));
+        var normal = priorityService.create(new Priority("Normal", "orange-500"));
+        var high = priorityService.create(new Priority("High", "red-500"));
         if (entity.getPriorities() == null) {
             entity.setPriorities(List.of(low, normal, high));
         }
