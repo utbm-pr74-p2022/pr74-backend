@@ -9,6 +9,8 @@ import fr.utbm.pr74.backend.resource.RegistrationUserModel;
 import fr.utbm.pr74.backend.resource.UserModel;
 import fr.utbm.pr74.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,11 @@ public class UserController {
         this.userModelAssembler = userModelAssembler;
         this.loginUserModelAssembler = loginUserModelAssembler;
         this.registrationUserModelBuilder = registrationUserModelBuilder;
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<CollectionModel<UserModel>> getAll() {
+        return new ResponseEntity<>(userModelAssembler.toCollectionModel(userService.getAll()), HttpStatus.OK);
     }
 
     @PostMapping("/user")
