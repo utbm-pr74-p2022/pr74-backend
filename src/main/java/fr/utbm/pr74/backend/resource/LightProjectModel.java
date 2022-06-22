@@ -1,6 +1,7 @@
 package fr.utbm.pr74.backend.resource;
 
 import lombok.*;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
@@ -15,4 +16,5 @@ public class LightProjectModel extends RepresentationModel<LightProjectModel> {
     private String name;
     private String date;
     private String status;
+    private CollectionModel<UserModel> users;
 }

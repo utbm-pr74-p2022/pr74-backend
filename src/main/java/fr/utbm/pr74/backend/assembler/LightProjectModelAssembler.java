@@ -14,9 +14,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
 public class LightProjectModelAssembler extends RepresentationModelAssemblerSupport<Project, LightProjectModel> {
+    private final UserModelAssembler userModelAssembler;
 
-    public LightProjectModelAssembler() {
+    public LightProjectModelAssembler(UserModelAssembler userModelAssembler) {
         super(ProjectController.class, LightProjectModel.class);
+        this.userModelAssembler = userModelAssembler;
     }
 
     @Override
@@ -30,6 +32,7 @@ public class LightProjectModelAssembler extends RepresentationModelAssemblerSupp
         projectModel.setName(entity.getName());
         projectModel.setDate(formatter.format(entity.getDate()));
         projectModel.setStatus(entity.getStatus());
+        projectModel.setUsers(userModelAssembler.toCollectionModel(entity.getUsers()));
         return projectModel;
     }
 }
