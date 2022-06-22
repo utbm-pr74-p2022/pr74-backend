@@ -32,13 +32,13 @@ public class ProjectService extends AbstractService<Project, ProjectRepository> 
         var low = priorityService.create(new Priority("Low", "yellow-500"));
         var normal = priorityService.create(new Priority("Normal", "orange-500"));
         var high = priorityService.create(new Priority("High", "red-500"));
-        if (entity.getPriorities() == null) {
+        if (entity.getPriorities() == null || entity.getPriorities().isEmpty()) {
             entity.setPriorities(List.of(low, normal, high));
         }
         var todo = statusService.create(new Status("To do"));
         var inProgress = statusService.create(new Status("In progress"));
         var done = statusService.create(new Status("Done"));
-        if (entity.getStatuses() == null) {
+        if (entity.getStatuses() == null || entity.getStatuses().isEmpty()) {
             entity.setStatuses(List.of(todo, inProgress, done));
         }
         var backlog = backlogService.create(new Backlog());
