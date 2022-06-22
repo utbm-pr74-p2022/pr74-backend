@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Backlog extends AbstractEntity {
-    @OneToOne
+    @OneToOne(mappedBy = "backlog")
     private Project project;
     @OneToMany(mappedBy = "backlog")
     private List<Task> tasks;

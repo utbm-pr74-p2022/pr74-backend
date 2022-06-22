@@ -14,9 +14,9 @@ INSERT INTO priority(id, name) VALUES(10, "Low");
 INSERT INTO priority(id, name) VALUES(11, "Normal");
 INSERT INTO priority(id, name) VALUES(12, "High");
 
-INSERT INTO project(id, name, date, status) VALUES(14, "Project 1", "2022-06-13", "OPEN");
+INSERT INTO backlog(id) VALUES(13);
 
-INSERT INTO backlog(id, project_id) VALUES(13, 14);
+INSERT INTO project(id, name, date, status, backlog_id) VALUES(14, "Project 1", "2022-06-13", "OPEN", 13);
 
 INSERT INTO project_statuses(project_id, statuses_id) VALUES(14, 7);
 INSERT INTO project_statuses(project_id, statuses_id) VALUES(14, 8);

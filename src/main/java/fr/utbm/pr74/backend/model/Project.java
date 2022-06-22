@@ -20,7 +20,7 @@ public class Project extends AbstractEntity {
     private List<Status> statuses;
     @OneToMany
     private List<Tag> tags;
-    @OneToOne(mappedBy = "project")
+    @OneToOne
     private Backlog backlog;
     @OneToMany(mappedBy = "project")
     private List<Sprint> sprints;
