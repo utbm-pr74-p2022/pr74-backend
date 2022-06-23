@@ -16,4 +16,5 @@ public class UserModel extends RepresentationModel<UserModel> {
     private String username;
     private String image;
     private Role role;
+    private boolean enabled;
 }

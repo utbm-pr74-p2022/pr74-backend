@@ -1,6 +1,7 @@
 package fr.utbm.pr74.backend.service;
 
 import fr.utbm.pr74.backend.configuration.jwt.JwtProvider;
+import fr.utbm.pr74.backend.model.Project;
 import fr.utbm.pr74.backend.model.User;
 import fr.utbm.pr74.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,16 @@ public class UserService extends AbstractService<User, UserRepository> implement
             }
             return null;
         });
+    }
+
+    @Override
+    public User update(Integer id, User entity) {
+        var user = getById(id).orElseThrow();
+        user.setUsername(entity.getUsername());
+        user.setImage(entity.getImage());
+        user.setRole(entity.getRole());
+        user.setEnabled(entity.isEnabled());
+        return super.update(id, user);
     }
 
     @Override
