@@ -15,6 +15,7 @@ public class UserModelBuilder extends AbstractModelBuilder<User, UserModel> {
         user.setId(model.getId());
         user.setUsername(model.getUsername());
         user.setImage(model.getImage());
+        user.setRole(model.getRole());
         return user;
     }
 }

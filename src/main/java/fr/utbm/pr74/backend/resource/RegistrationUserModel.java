@@ -1,5 +1,6 @@
 package fr.utbm.pr74.backend.resource;
 
+import fr.utbm.pr74.backend.model.Role;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
@@ -14,4 +15,5 @@ public class RegistrationUserModel extends RepresentationModel<RegistrationUserM
     private String username;
     private String password;
     private String image;
+    private Role role;
 }
