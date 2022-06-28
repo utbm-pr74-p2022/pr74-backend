@@ -13,6 +13,7 @@ public class RegistrationUserModelBuilder extends AbstractModelBuilder<User, Reg
         user.setUsername(model.getUsername());
         user.setPassword(model.getPassword());
         user.setImage(model.getImage());
+        user.setRole(model.getRole());
         return user;
     }
 }
